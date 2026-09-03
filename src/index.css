@@ -1,0 +1,39 @@
+:root {
+    --ink: #080808;
+    --paper: #f4efe6;
+    --accent: royalblue;
+    --secondary: grey;
+
+    --font-body: Arial, Helvetica, sans-serif;
+    --font-display:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-body);
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
