@@ -1,24 +1,20 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import "./index.css";
+import App from "./App";
 
-const redirect = sessionStorage.getItem("redirect");
-
-if (redirect) {
+const redirectedUrl = sessionStorage.getItem("redirect");
+if (redirectedUrl) {
   sessionStorage.removeItem("redirect");
-
-  const url = new URL(redirect);
-
-  window.history.replaceState(
-    null,
-    "",
-    url.pathname + url.search + url.hash
-  );
+  const redirected = new URL(redirectedUrl);
+  window.history.replaceState(null, "", `${redirected.pathname}${redirected.search}${redirected.hash}`);
 }
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
-)
+);

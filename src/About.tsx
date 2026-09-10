@@ -1,42 +1,17 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { site } from "./data/site";
 import "./about.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const stats = [
-  {
-    label: "CREATIVE DIRECTION",
-    value: 92,
-  },
-  {
-    label: "DEVELOPMENT",
-    value: 86,
-  },
-  {
-    label: "DESIGN",
-    value: 88,
-  },
-  {
-    label: "EXPERIMENTATION",
-    value: 95,
-  },
-];
-
-const specialties = [
-  "PHOTOSHOP",
-  "VIDEOTOGRAPHY",
-  "GRAPHIC DESIGN",
-  "SOCIAL MEDIA",
-];
-
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { about } = site;
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
-
     if (!section) return;
 
     const ctx = gsap.context(() => {
@@ -45,11 +20,7 @@ export default function About() {
         autoAlpha: 0,
         duration: 0.6,
         ease: "back.out(1.6)",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 75%",
-          once: true,
-        },
+        scrollTrigger: { trigger: section, start: "top 75%", once: true },
       });
 
       gsap.from(".aboutTitle", {
@@ -57,11 +28,7 @@ export default function About() {
         autoAlpha: 0,
         duration: 0.6,
         ease: "power4.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 75%",
-          once: true,
-        },
+        scrollTrigger: { trigger: section, start: "top 75%", once: true },
       });
 
       gsap.from(".aboutPortraitWrap", {
@@ -106,88 +73,64 @@ export default function About() {
   }, []);
 
   return (
-    <section
-      className="aboutSection"
-      id="about"
-      ref={sectionRef}
-    >
+    <section className="aboutSection" id="about" ref={sectionRef}>
       <div className="aboutHeader">
-        <span className="aboutNumber">02</span>
-
+        <span className="aboutNumber">{about.number}</span>
         <div>
-          <span className="aboutKicker">
-            PROFILE DATA ///
-          </span>
-
-          <h2 className="aboutTitle">
-            ABOUT
-          </h2>
+          <span className="aboutKicker">{about.kicker}</span>
+          <h2 className="aboutTitle">{about.title}</h2>
         </div>
-
         <span className="aboutStatus">
-          STATUS
-          <strong>ACTIVE</strong>
+          {about.statusLabel}
+          <strong>{about.statusValue}</strong>
         </span>
       </div>
 
       <div className="aboutLayout">
         <div className="aboutPortraitWrap">
           <div className="aboutPortrait">
-            <div className="aboutPortraitInner">
-              <span>PORTRAIT</span>
-
-              <small>
-                / CHARACTER ART /
-              </small>
-            </div>
+            {about.portraitImage ? (
+              <img
+                className="aboutPortraitImage"
+                src={about.portraitImage}
+                alt={`${site.owner.name} portrait`}
+                loading="lazy"
+              />
+            ) : (
+              <div className="aboutPortraitInner">
+                <span>{about.portraitLabel}</span>
+                <small>{about.portraitSubLabel}</small>
+              </div>
+            )}
           </div>
-          <span className="aboutPortraitTag">
-            PLAYER 00
-          </span>
+          <span className="aboutPortraitTag">{about.playerTag}</span>
         </div>
 
         <div className="aboutInfoPanel">
-          <span className="aboutLabel">
-            IDENTITY ///
-          </span>
-
+          <span className="aboutLabel">{about.identityLabel}</span>
           <h3>
-            CREATIVE
-            <span>PROFILE</span>
+            {about.headingTop}
+            <span>{about.headingBottom}</span>
           </h3>
-
-          <p className="aboutBio">
-            Hello! I'm Brandon Phan, a multidisciplinary creative passionate about exploring new ideas and pushing the boundaries of art and design. I enjoy creating work that is both visually striking and conceptually engaging.
-          </p>
+          <p className="aboutBio">{about.bio}</p>
 
           <div className="aboutSpecialties">
-            {specialties.map((specialty) => (
-              <span key={specialty}>
-                {specialty}
-              </span>
+            {about.specialties.map((specialty) => (
+              <span key={specialty}>{specialty}</span>
             ))}
           </div>
 
           <div className="aboutStats">
-            {stats.map((stat) => (
-              <div
-                className="aboutStat"
-                key={stat.label}
-              >
+            {about.stats.map((stat) => (
+              <div className="aboutStat" key={stat.label}>
                 <div className="aboutStatHeader">
                   <span>{stat.label}</span>
-
-                  <strong>
-                    {stat.value}
-                  </strong>
+                  <strong>{stat.value}</strong>
                 </div>
-
                 <div className="aboutStatTrack">
                   <div
                     className="aboutStatFill"
-                    style={{
-                      width: `${stat.value}%`,
-                    }}
+                    style={{ width: `${stat.value}%` }}
                   />
                 </div>
               </div>
@@ -197,11 +140,8 @@ export default function About() {
       </div>
 
       <div className="aboutFooterNote">
-        <span>PROFILE // 02</span>
-
-        <strong>
-          KEEP MAKING WEIRD THINGS.
-        </strong>
+        <span>{about.footerLabel}</span>
+        <strong>{about.footerMessage}</strong>
       </div>
     </section>
   );

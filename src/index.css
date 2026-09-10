@@ -1,40 +1,17 @@
 :root {
-    /* Monochrome portfolio palette */
-    --ink: #000000;
-    --paper: #FFFFFF;
-    --accent: #333131;
-    --secondary: #FFFFFF;
-
-    --font-body: Arial, Helvetica, sans-serif;
-    --font-display:
-        Impact,
-        Haettenschweiler,
-        "Arial Narrow Bold",
-        sans-serif;
+  --ink: #000000;
+  --paper: #ffffff;
+  --accent: #333131;
+  --secondary: #ffffff;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-display: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-    margin: 0;
-    min-width: 100%;
-    min-height: 100%;
-}
-
-body {
-    background: var(--ink);
-    color: var(--paper);
-    font-family: var(--font-body);
-}
-
-button,
-input,
-textarea {
-    font: inherit;
-}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: auto; background: var(--ink); }
+html, body, #root { margin: 0; min-width: 100%; min-height: 100%; }
+body { background: var(--ink); color: var(--paper); font-family: var(--font-body); }
+button, input, textarea { font: inherit; }
+a { color: inherit; }
+img { max-width: 100%; }
+::selection { background: var(--paper); color: var(--ink); }
