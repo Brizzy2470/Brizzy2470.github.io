@@ -3,6 +3,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import "./home.css";
 import profilePic from "./images/profile.jpg";
+
 const navItems = [
     { index: "01", label: "WORK" },
     { index: "02", label: "ABOUT" },
