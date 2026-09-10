@@ -16,3 +16,7 @@ To start the server locally
 ```bash
 npm run dev
 ```
+
+
+.css is the styling
+.tsx is the actual website content
