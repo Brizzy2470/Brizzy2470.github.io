@@ -40,7 +40,7 @@
     height: 7vh;
     left: 20vw;
     bottom: 7vh;
-    background: var(--paper);
+    background: var(--accent);
     transform: rotate(7deg) skewX(-18deg);
 }
 
@@ -65,13 +65,13 @@
     align-items: center;
     gap: 0.8rem;
     padding: 0.55rem 0.85rem;
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--accent);
+    color: var(--paper);
     font-size: 0.78rem;
     font-weight: 900;
     letter-spacing: 0.16em;
     transform: rotate(-2deg);
-    box-shadow: 8px 8px 0 var(--accent);
+    box-shadow: 8px 8px 0 rgba(255,255,255,0.16);
 }
 
 .heroEyebrowMark {
@@ -106,8 +106,8 @@
 }
 
 .heroTitleBottom {
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--accent);
+    color: var(--paper);
     padding: 0.05em 0.12em 0.11em;
     transform: translateX(0.45em) rotate(-4deg) skewX(-7deg);
     clip-path: polygon(2% 8%, 98% 0, 94% 92%, 0 100%);
@@ -130,7 +130,7 @@
     align-items: center;
     gap: 0.75rem;
     background: var(--accent);
-    color: white;
+    color: var(--paper);
     cursor: pointer;
     font-weight: 1000;
     letter-spacing: 0.08em;
@@ -178,7 +178,7 @@
 .visualBurstBack {
     width: 34rem;
     aspect-ratio: 1;
-    background: var(--paper);
+    background: #191919;
     rotate: 4deg;
 }
 
@@ -196,10 +196,11 @@
     width: min(30vw, 390px);
     min-width: 280px;
     aspect-ratio: 0.74;
-    background: var(--ink);
+    background: #000000;
     transform: rotate(3deg);
-    clip-path: polygon(7% 3%, 94% 0, 100% 90%, 75% 100%, 0 92%, 3% 17%);
-    padding: 0.85rem;
+    padding: 0;
+    overflow: hidden;
+    border: 3px solid var(--accent);
 }
 
 .portraitPlaceholder {
@@ -242,23 +243,23 @@
 .visualStickerOne {
     right: -2vw;
     top: 18%;
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--accent);
+    color: var(--paper);
     padding: 1rem 1.2rem;
     font-size: clamp(1.5rem, 3vw, 3rem);
     transform: rotate(8deg);
-    box-shadow: 7px 7px 0 var(--accent);
+    box-shadow: 7px 7px 0 rgba(255,255,255,0.16);
 }
 
 .visualStickerTwo {
     left: 0;
     bottom: 14%;
     background: var(--accent);
-    color: white;
+    color: var(--paper);
     padding: 0.7rem 1.1rem;
     font-size: clamp(1.3rem, 2vw, 2.2rem);
     transform: rotate(-8deg);
-    border: 4px solid var(--ink);
+    border: 3px solid var(--paper);
 }
 
 .personaNav {
@@ -279,8 +280,8 @@
     align-items: center;
     gap: 0.7rem;
     text-decoration: none;
-    color: var(--ink);
-    background: var(--paper);
+    color: var(--paper);
+    background: var(--accent);
     padding: 0.55rem 0.75rem;
     font-weight: 1000;
     transform-origin: right center;
@@ -306,7 +307,7 @@
 
 .personaNavItem:hover {
     background: var(--accent);
-    color: white;
+    color: var(--paper);
     transform: translateX(-12px) scale(1.06) rotate(-2deg);
 }
 
@@ -333,7 +334,7 @@
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 1rem;
-    color: var(--ink);
+    color: var(--paper);
     font-weight: 1000;
     font-size: 0.67rem;
     letter-spacing: 0.14em;
@@ -341,7 +342,7 @@
 
 .heroFooterLine {
     height: 2px;
-    background: var(--ink);
+    background: var(--paper);
 }
 
 @media (max-width: 980px) {
@@ -364,4 +365,11 @@
         top: 1.5rem;
         right: 1rem;
     }
+}
+
+.portraitImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }

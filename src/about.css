@@ -4,7 +4,7 @@
   padding: 7rem 6vw 8rem;
   overflow: hidden;
   background:
-    radial-gradient(circle at 78% 20%, rgba(239, 35, 60, 0.18), transparent 22rem),
+    radial-gradient(circle at 78% 20%, rgba(51, 49, 49, 0.58), transparent 22rem),
     var(--ink);
   color: var(--paper);
 }
@@ -54,8 +54,8 @@
 
 .aboutKicker {
   display: inline-block;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--accent);
+  color: var(--paper);
   padding: 0.45rem 0.8rem;
   font-size: 0.72rem;
   font-weight: 1000;
@@ -77,17 +77,17 @@
   flex-direction: column;
   gap: 0.2rem;
   padding: 0.8rem 1rem;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--accent);
+  color: var(--paper);
   font-size: 0.65rem;
   font-weight: 1000;
   letter-spacing: 0.13em;
   transform: rotate(5deg);
-  box-shadow: 7px 7px 0 var(--accent);
+  box-shadow: 7px 7px 0 rgba(255,255,255,0.16);
 }
 
 .aboutStatus strong {
-  color: var(--accent);
+  color: var(--paper);
   font-size: 1.15rem;
 }
 
@@ -104,7 +104,7 @@
   position: relative;
   min-height: 34rem;
   padding: 0.9rem;
-  background: var(--paper);
+  background: var(--accent);
   transform: rotate(-3deg);
   clip-path: polygon(
     7% 0,
@@ -114,7 +114,7 @@
     4% 95%,
     0 14%
   );
-  box-shadow: 18px 18px 0 var(--accent);
+  box-shadow: 18px 18px 0 rgba(255,255,255,0.12);
 }
 
 .aboutPortraitInner {
@@ -125,16 +125,16 @@
   place-items: center;
   align-content: center;
   gap: 0.45rem;
-  color: var(--ink);
+  color: var(--paper);
   background:
     repeating-linear-gradient(
       -45deg,
-      rgba(8, 8, 8, 0.08),
-      rgba(8, 8, 8, 0.08) 8px,
-      rgba(8, 8, 8, 0.16) 8px,
-      rgba(8, 8, 8, 0.16) 14px
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 8px,
+      rgba(0,0,0,0.16) 8px,
+      rgba(0,0,0,0.16) 14px
     ),
-    var(--paper);
+    #151515;
   clip-path: polygon(
     4% 2%,
     98% 0,
@@ -163,7 +163,7 @@
   left: -1rem;
   bottom: 8%;
   background: var(--accent);
-  color: white;
+  color: var(--paper);
   padding: 0.7rem 1rem;
   font-family: var(--font-display);
   font-size: 1.7rem;
@@ -174,8 +174,8 @@
 .aboutInfoPanel {
   position: relative;
   padding: 2.5rem;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--accent);
+  color: var(--paper);
   clip-path: polygon(
     2% 1%,
     97% 0,
@@ -183,18 +183,19 @@
     94% 100%,
     0 96%
   );
-  box-shadow: 14px 14px 0 var(--accent);
+  box-shadow: 14px 14px 0 rgba(255,255,255,0.12);
 }
 
 .aboutLabel {
   display: inline-block;
-  background: var(--ink);
+  background: #000000;
   color: var(--paper);
   padding: 0.45rem 0.65rem;
   font-size: 0.68rem;
   font-weight: 1000;
   letter-spacing: 0.15em;
   transform: rotate(-2deg);
+  border: 1px solid rgba(255,255,255,0.35);
 }
 
 .aboutInfoPanel h3 {
@@ -208,10 +209,10 @@
 }
 
 .aboutInfoPanel h3 span {
-  color: var(--accent);
+  color: var(--paper);
   transform: translateX(0.15em) rotate(2deg);
-  text-shadow: 4px 4px 0 var(--ink);
-  -webkit-text-stroke: 1px var(--ink);
+  text-shadow: 4px 4px 0 #000000;
+  -webkit-text-stroke: 1px #000000;
 }
 
 .aboutBio {
@@ -272,8 +273,9 @@
   position: relative;
   height: 0.85rem;
   overflow: hidden;
-  background: #d8d1c8;
+  background: #151515;
   transform: skewX(-10deg);
+  border: 1px solid rgba(255,255,255,0.18);
 }
 
 .aboutStatFill {
@@ -281,10 +283,10 @@
   background:
     repeating-linear-gradient(
       90deg,
-      var(--accent),
+      var(--paper),
+      var(--paper) 14px,
       var(--accent) 14px,
-      var(--ink) 14px,
-      var(--ink) 17px
+      var(--accent) 17px
     );
   transform-origin: left center;
 }
@@ -298,14 +300,14 @@
   gap: 2rem;
   align-items: center;
   padding-top: 1.3rem;
-  border-top: 2px solid rgba(244, 239, 230, 0.5);
+  border-top: 2px solid rgba(255, 255, 255, 0.35);
   font-size: 0.7rem;
   font-weight: 1000;
   letter-spacing: 0.14em;
 }
 
 .aboutFooterNote strong {
-  color: var(--accent);
+  color: var(--paper);
   font-size: clamp(1rem, 2vw, 1.6rem);
   transform: rotate(-1deg);
 }

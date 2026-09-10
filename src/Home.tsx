@@ -2,7 +2,7 @@ import PageTransition from "./components/PageTransition/PageTransition";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import "./home.css";
-
+import profilePic from "./images/profile.jpg";
 const navItems = [
     { index: "01", label: "WORK" },
     { index: "02", label: "ABOUT" },
@@ -424,7 +424,7 @@ export default function Home() {
                         </h1>
 
                         <p className="heroIntro">
-                            i hate howie
+                            My Creative Work!
                         </p>
 
                         <button
@@ -448,10 +448,11 @@ export default function Home() {
                         <div className="visualBurst visualBurstFront" />
 
                         <div className="portraitFrame">
-                            <div className="portraitPlaceholder">
-                                <span>PORTRAIT</span>
-                                <small>/ CHARACTER ART /</small>
-                            </div>
+                            <img
+                                src={profilePic}
+                                alt="Brandon Phan"
+                                className="portraitImage"
+                            />
                         </div>
 
                         <div className="visualSticker visualStickerOne">

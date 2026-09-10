@@ -4,9 +4,9 @@
   overflow: hidden;
   padding: 7rem 6vw 8rem;
   background:
-    radial-gradient(circle at 15% 20%, rgba(239, 35, 60, 0.22), transparent 22rem),
-    var(--paper);
-  color: var(--ink);
+    radial-gradient(circle at 15% 20%, rgba(179, 171, 171, 0.18), transparent 22rem),
+    var(--ink);
+  color: var(--paper);
 }
 
 .workSection::before {
@@ -15,8 +15,10 @@
   inset: 0;
   pointer-events: none;
   opacity: 0.12;
+
   background-image:
-    radial-gradient(circle, rgba(0, 0, 0, 0.8) 0 1px, transparent 1px);
+    radial-gradient(circle, rgba(255, 255, 255, 0.55) 0 1px, transparent 1px);
+
   background-size: 16px 16px;
 }
 
@@ -81,14 +83,14 @@
 .workHeaderNote {
   align-self: center;
   background: var(--accent);
-  color: white;
+  color: var(--paper);
   padding: 0.9rem 1.1rem;
   font-weight: 1000;
   font-size: 0.72rem;
   line-height: 1.3;
   letter-spacing: 0.12em;
   transform: rotate(5deg);
-  box-shadow: 7px 7px 0 var(--ink);
+  box-shadow: 7px 7px 0 rgba(255,255,255,0.16);
 }
 
 .projectList {
@@ -134,7 +136,7 @@
   font-size: clamp(8rem, 18vw, 16rem);
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 3px rgba(8, 8, 8, 0.18);
+  -webkit-text-stroke: 3px rgba(255, 255, 255, 0.16);
   pointer-events: none;
   transition:
     transform 260ms ease,
@@ -162,15 +164,16 @@
   min-height: 26rem;
   display: grid;
   place-items: center;
+  color: var(--paper);
   background:
     repeating-linear-gradient(
       -45deg,
-      rgba(8, 8, 8, 0.06),
-      rgba(8, 8, 8, 0.06) 8px,
-      rgba(8, 8, 8, 0.15) 8px,
-      rgba(8, 8, 8, 0.15) 14px
+      rgba(255,255,255,0.035),
+      rgba(255,255,255,0.035) 8px,
+      rgba(0,0,0,0.16) 8px,
+      rgba(0,0,0,0.16) 14px
     ),
-    var(--paper);
+    var(--accent);
   clip-path: polygon(
     2% 1%,
     98% 3%,
@@ -198,7 +201,7 @@
   display: inline-block;
   padding: 0.45rem 0.7rem;
   margin-bottom: 0.8rem;
-  background: var(--ink);
+  background: var(--accent);
   color: var(--paper);
   font-size: 0.7rem;
   font-weight: 1000;
@@ -223,10 +226,10 @@
 
 .projectTitle span:last-child {
   display: inline-block;
-  color: var(--accent);
+  color: var(--paper);
   transform: translateX(0.2em) rotate(2deg);
-  text-shadow: 5px 5px 0 var(--ink);
-  -webkit-text-stroke: 1px var(--ink);
+  text-shadow: 5px 5px 0 var(--accent);
+  -webkit-text-stroke: 1px var(--accent);
 }
 
 .projectDescription {
@@ -241,6 +244,21 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
+}
+
+.projectTags span {
+  border: 2px solid var(--paper);
+  color: var(--paper);
+  padding: 0.35rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 1000;
+  letter-spacing: 0.12em;
+  background: var(--accent);
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
 }
 
 .projectTags span {
@@ -272,7 +290,7 @@
   gap: 1rem;
   padding: 0.85rem 1rem;
   background: var(--accent);
-  color: white;
+  color: var(--paper);
   font-weight: 1000;
   letter-spacing: 0.1em;
   cursor: pointer;
@@ -336,7 +354,7 @@
   transform:
     translateY(-10px)
     rotate(-3deg);
-  -webkit-text-stroke: 3px rgba(239, 35, 60, 0.45);
+  -webkit-text-stroke: 3px rgba(255, 255, 255, 0.42);
 }
 
 .projectCard:hover .projectTags span:nth-child(odd) {
@@ -391,7 +409,7 @@
   display: grid;
   place-items: center;
   background: var(--accent);
-  color: white;
+  color: var(--paper);
   font-family: var(--font-display);
   font-size: 1rem;
   border-radius: 50%;
