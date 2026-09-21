@@ -1,3 +1,4 @@
+import PageTransition from "./components/PageTransition/PageTransition";
 import { useLayoutEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
@@ -12,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
+  const transitionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { work } = site;
 
@@ -51,81 +53,119 @@ export default function Work() {
     return () => ctx.revert();
   }, []);
 
+  const handleOpenCase = (slug: string) => {
+    const transition = transitionRef.current;
+
+    if (!transition) {
+      navigate(`/project/${slug}`);
+      return;
+    }
+
+    gsap.killTweensOf(transition);
+
+    gsap.set(transition, {
+      display: "block",
+      xPercent: -120,
+    });
+
+    gsap
+      .timeline()
+      .to(transition, {
+        xPercent: 0,
+        duration: 0.45,
+        ease: "power4.in",
+      })
+      .add(() => {
+        navigate(`/project/${slug}`, {
+          state: {
+            fromWork: true,
+          },
+        });
+      });
+  };
+
   return (
-    <section className="workSection" id="work" ref={sectionRef}>
-      <div className="workHeader">
-        <span className="workNumber">{work.number}</span>
-        <div className="workHeadingWrap">
-          <span className="workKicker">{work.kicker}</span>
-          <h2 className="workHeading">{work.heading}</h2>
+    <>
+      <PageTransition
+        ref={transitionRef}
+        label="OPEN CASE"
+      />
+
+      <section className="workSection" id="work" ref={sectionRef}>
+        <div className="workHeader">
+          <span className="workNumber">{work.number}</span>
+          <div className="workHeadingWrap">
+            <span className="workKicker">{work.kicker}</span>
+            <h2 className="workHeading">{work.heading}</h2>
+          </div>
+          <span className="workHeaderNote">
+            {work.noteTop}
+            <br />
+            {work.noteBottom}
+          </span>
         </div>
-        <span className="workHeaderNote">
-          {work.noteTop}
-          <br />
-          {work.noteBottom}
-        </span>
-      </div>
 
-      <div className="projectList">
-        {projects.map((project) => {
-          const discoveredImages = getProjectImages(project.slug);
-          const coverImage = project.coverImage ?? discoveredImages[0];
+        <div className="projectList">
+          {projects.map((project) => {
+            const discoveredImages = getProjectImages(project.slug);
+            const coverImage = project.coverImage ?? discoveredImages[0];
 
-          return (
-            <article className="projectCard" key={project.slug}>
-              <span className="projectIndex">{project.number}</span>
+            return (
+              <article className="projectCard" key={project.slug}>
+                <span className="projectIndex">{project.number}</span>
 
-              <div className="projectImage">
-                {coverImage ? (
-                  <img
-                    className="projectImageActual"
-                    src={coverImage}
-                    alt={`${project.title.join(" ")} cover`}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <div className="projectImagePlaceholder">
-                    <span>{work.imagePlaceholder}</span>
-                  </div>
-                )}
-              </div>
-
-              <div className="projectContent">
-                <span className="projectCategory">{project.category}</span>
-                <h3 className="projectTitle">
-                  {project.title.map((line) => (
-                    <span key={line}>{line}</span>
-                  ))}
-                </h3>
-                <p className="projectDescription">{project.description}</p>
-
-                <div className="projectTags">
-                  {project.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
+                <div className="projectImage">
+                  {coverImage ? (
+                    <img
+                      className="projectImageActual"
+                      src={coverImage}
+                      alt={`${project.title.join(" ")} cover`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div className="projectImagePlaceholder">
+                      <span>{work.imagePlaceholder}</span>
+                    </div>
+                  )}
                 </div>
 
-                <button
-                  className="projectOpen"
-                  type="button"
-                  onClick={() => navigate(`/project/${project.slug}`)}
-                >
-                  {work.openButton}
-                  <span>↗</span>
-                </button>
-              </div>
+                <div className="projectContent">
+                  <span className="projectCategory">{project.category}</span>
+                  <h3 className="projectTitle">
+                    {project.title.map((line) => (
+                      <span key={line}>{line}</span>
+                    ))}
+                  </h3>
+                  <p className="projectDescription">{project.description}</p>
 
-              <div className="projectHoverNote" aria-hidden="true">
-                {work.hoverNote}
-                <span>!</span>
-              </div>
-            </article>
-          );
-        })}
-      </div>
+                  <div className="projectTags">
+                    {project.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
 
-      <PhotoArchive />
-    </section>
+                  <button
+                    className="projectOpen"
+                    type="button"
+                    onClick={() => handleOpenCase(project.slug)}
+                  >
+                    {work.openButton}
+                    <span>↗</span>
+                  </button>
+                </div>
+
+                <div className="projectHoverNote" aria-hidden="true">
+                  {work.hoverNote}
+                  <span>!</span>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <PhotoArchive />
+      </section>
+    </>
   );
 }

@@ -25,8 +25,8 @@ function Portfolio() {
   return (
     <>
       <Home />
-      <Work />
       <About />
+      <Work />
       <Contact />
     </>
   );

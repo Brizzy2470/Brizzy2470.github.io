@@ -35,20 +35,9 @@ export const site = {
     { index: "02", label: "ABOUT", section: "about" },
     { index: "03", label: "CONTACT", section: "contact" },
   ],
-
-  work: {
-    number: "01",
-    kicker: "CASE FILES ///",
-    heading: "WORK",
-    noteTop: "SELECT A FILE",
-    noteBottom: "TO INVESTIGATE",
-    hoverNote: "INVESTIGATE",
-    openButton: "OPEN CASE",
-    imagePlaceholder: "PROJECT IMAGE",
-  },
-
+  
   about: {
-    number: "02",
+    number: "01",
     kicker: "PROFILE DATA ///",
     title: "ABOUT",
     statusLabel: "STATUS",
@@ -73,8 +62,19 @@ export const site = {
       { label: "DESIGN", value: 88 },
       { label: "EXPERIMENTATION", value: 95 },
     ],
-    footerLabel: "PROFILE // 02",
+    footerLabel: "PROFILE // 01",
     footerMessage: "KEEP MAKING WEIRD THINGS.",
+  },
+
+  work: {
+    number: "02",
+    kicker: "CASE FILES ///",
+    heading: "WORK",
+    noteTop: "SELECT A FILE",
+    noteBottom: "TO INVESTIGATE",
+    hoverNote: "INVESTIGATE",
+    openButton: "OPEN CASE",
+    imagePlaceholder: "PROJECT IMAGE",
   },
 
   contact: {

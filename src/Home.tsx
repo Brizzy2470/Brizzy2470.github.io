@@ -1,5 +1,6 @@
 import PageTransition from "./components/PageTransition/PageTransition";
 import { useLayoutEffect, useRef, type MouseEvent } from "react";
+import { useLocation } from "react-router-dom";
 import gsap from "gsap";
 import { site } from "./data/site";
 import "./home.css";
@@ -8,6 +9,7 @@ export default function Home() {
   const pageRef = useRef<HTMLElement>(null);
   const transitionRef = useRef<HTMLDivElement>(null);
   const transitionTextRef = useRef<HTMLSpanElement>(null);
+  const location = useLocation();
 
   useLayoutEffect(() => {
     const page = pageRef.current;
@@ -202,6 +204,40 @@ export default function Home() {
       ctx.revert();
     };
   }, []);
+
+  useLayoutEffect(() => {
+    if (location.state?.fromProject !== true) return;
+
+    const transition = transitionRef.current;
+    if (!transition) return;
+
+    if (transitionTextRef.current) {
+      transitionTextRef.current.textContent = "RETURN TO WORK";
+    }
+
+    gsap.killTweensOf(transition);
+
+    gsap.set(transition, {
+      display: "block",
+      xPercent: 0,
+    });
+
+    const tween = gsap.to(transition, {
+      xPercent: -120,
+      duration: 0.6,
+      delay: 0.12,
+      ease: "power4.out",
+      onComplete: () => {
+        gsap.set(transition, {
+          display: "none",
+        });
+      },
+    });
+
+    return () => {
+      tween.kill();
+    };
+  }, [location.state]);
 
   const handleSectionEnter = (
     sectionId: string,
