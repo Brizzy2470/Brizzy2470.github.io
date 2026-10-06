@@ -1,17 +1,23 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { site } from "./data/site";
 import "./about.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const skills = [
+  "PHOTOSHOP",
+  "VIDEOTOGRAPHY",
+  "GRAPHIC DESIGN",
+  "SOCIAL MEDIA",
+];
+
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
-  const { about } = site;
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
+
     if (!section) return;
 
     const ctx = gsap.context(() => {
@@ -20,7 +26,11 @@ export default function About() {
         autoAlpha: 0,
         duration: 0.6,
         ease: "back.out(1.6)",
-        scrollTrigger: { trigger: section, start: "top 75%", once: true },
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          once: true,
+        },
       });
 
       gsap.from(".aboutTitle", {
@@ -28,42 +38,36 @@ export default function About() {
         autoAlpha: 0,
         duration: 0.6,
         ease: "power4.out",
-        scrollTrigger: { trigger: section, start: "top 75%", once: true },
-      });
-
-      gsap.from(".aboutPortraitWrap", {
-        scale: 0.7,
-        rotation: -9,
-        autoAlpha: 0,
-        duration: 0.7,
-        ease: "back.out(1.5)",
         scrollTrigger: {
-          trigger: ".aboutPortraitWrap",
-          start: "top 82%",
+          trigger: section,
+          start: "top 75%",
           once: true,
         },
       });
 
-      gsap.from(".aboutInfoPanel", {
-        x: 100,
+      gsap.from(".aboutCharacterStage", {
+        x: -90,
+        y: 35,
+        scale: 0.92,
         autoAlpha: 0,
-        duration: 0.6,
+        duration: 0.85,
         ease: "power4.out",
         scrollTrigger: {
-          trigger: ".aboutInfoPanel",
+          trigger: ".aboutCharacterStage",
           start: "top 82%",
           once: true,
         },
       });
 
-      gsap.from(".aboutStatFill", {
-        width: 0,
-        duration: 0.8,
+      gsap.from(".aboutInfoBox", {
+        x: 90,
+        autoAlpha: 0,
+        duration: 0.65,
         stagger: 0.12,
         ease: "power4.out",
         scrollTrigger: {
-          trigger: ".aboutStats",
-          start: "top 85%",
+          trigger: ".aboutInfoStack",
+          start: "top 82%",
           once: true,
         },
       });
@@ -75,73 +79,81 @@ export default function About() {
   return (
     <section className="aboutSection" id="about" ref={sectionRef}>
       <div className="aboutHeader">
-        <span className="aboutNumber">{about.number}</span>
+        <span className="aboutNumber">01</span>
+
         <div>
-          <span className="aboutKicker">{about.kicker}</span>
-          <h2 className="aboutTitle">{about.title}</h2>
+          <span className="aboutKicker">PROFILE DATA ///</span>
+          <h2 className="aboutTitle">ABOUT</h2>
         </div>
+
         <span className="aboutStatus">
-          {about.statusLabel}
-          <strong>{about.statusValue}</strong>
+          STATUS
+          <strong>ACTIVE</strong>
         </span>
       </div>
 
       <div className="aboutLayout">
-        <div className="aboutPortraitWrap">
-          <div className="aboutPortrait">
-            {about.portraitImage ? (
-              <img
-                className="aboutPortraitImage"
-                src={about.portraitImage}
-                alt={`${site.owner.name} portrait`}
-                loading="lazy"
-              />
-            ) : (
-              <div className="aboutPortraitInner">
-                <span>{about.portraitLabel}</span>
-                <small>{about.portraitSubLabel}</small>
-              </div>
-            )}
+        <div className="aboutCharacterStage">
+          <img
+            className="aboutCharacterImage"
+            src="/images/profile/about-profile.png"
+            alt="Profile portrait"
+          />
+
+          <div className="aboutCharacterName">
+            <span>PLAYER</span>
+            <strong>00</strong>
           </div>
-          <span className="aboutPortraitTag">{about.playerTag}</span>
+
+          <div className="aboutCharacterReadout">
+            <span>PROFILE</span>
+            <strong>LV. 01</strong>
+          </div>
         </div>
 
-        <div className="aboutInfoPanel">
-          <span className="aboutLabel">{about.identityLabel}</span>
-          <h3>
-            {about.headingTop}
-            <span>{about.headingBottom}</span>
-          </h3>
-          <p className="aboutBio">{about.bio}</p>
+        <div className="aboutInfoStack">
+          <article className="aboutInfoBox aboutNameBox">
+            <span className="aboutBoxLabel">NAME ///</span>
+            <h3>YOUR NAME</h3>
+          </article>
 
-          <div className="aboutSpecialties">
-            {about.specialties.map((specialty) => (
-              <span key={specialty}>{specialty}</span>
-            ))}
-          </div>
+          <article className="aboutInfoBox aboutDescriptionBox">
+            <span className="aboutBoxLabel">DESCRIPTION ///</span>
+            <p>
+              A short introduction goes here. Use this space to describe the
+              person, their creative interests, and the kind of work they enjoy
+              making.
+            </p>
+          </article>
 
-          <div className="aboutStats">
-            {about.stats.map((stat) => (
-              <div className="aboutStat" key={stat.label}>
-                <div className="aboutStatHeader">
-                  <span>{stat.label}</span>
-                  <strong>{stat.value}</strong>
+          <article className="aboutInfoBox aboutSkillsBox">
+            <div className="aboutSkillsHeader">
+              <span className="aboutBoxLabel">SKILLS ///</span>
+              <span className="aboutSkillsHint">HOVER TO INSPECT</span>
+            </div>
+
+            <div className="aboutSkillList">
+              {skills.map((skill, index) => (
+                <div className="aboutSkillItem" key={skill}>
+                  <span className="aboutSkillNumber">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <span className="aboutSkillName">{skill}</span>
+
+                  <span className="aboutSkillArrow" aria-hidden="true">
+                    ↗
+                  </span>
                 </div>
-                <div className="aboutStatTrack">
-                  <div
-                    className="aboutStatFill"
-                    style={{ width: `${stat.value}%` }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </article>
         </div>
       </div>
 
       <div className="aboutFooterNote">
-        <span>{about.footerLabel}</span>
-        <strong>{about.footerMessage}</strong>
+        <span>PROFILE // 01</span>
+        <strong>KEEP MAKING WEIRD THINGS.</strong>
       </div>
     </section>
   );
