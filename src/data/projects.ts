@@ -33,8 +33,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     number: "001",
-    title: ["PROJECT", "ALPHA"],
-    slug: "project-alpha",
+    title: ["NIGHT IN", "SHIBUYA"],
+    slug: "night-in-shibuya",
     category: "CREATIVE DEVELOPMENT",
     description:
       "A generic case study placeholder for a creative project. Replace this with the real project story later.",
