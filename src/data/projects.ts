@@ -47,8 +47,8 @@ export const projects: Project[] = [
   },
   {
     number: "002",
-    title: ["PROJECT", "BETA"],
-    slug: "project-beta",
+    title: ["IKAYU"],
+    slug: "IKAYU",
     category: "INTERACTIVE EXPERIENCE",
     description:
       "A second placeholder case study for an interactive project or experiment.",
@@ -61,8 +61,8 @@ export const projects: Project[] = [
   },
   {
     number: "003",
-    title: ["PROJECT", "GAMMA"],
-    slug: "project-gamma",
+    title: ["ACCESS", "GRANTED"],
+    slug: "access-granted",
     category: "VISUAL EXPERIMENT",
     description:
       "A third placeholder case study that can later hold process notes, screenshots, and results.",
@@ -73,6 +73,62 @@ export const projects: Project[] = [
     approach: "Describe the design process, technical approach, or experiments.",
     result: "Add outcomes, lessons learned, and what changed because of the work.",
   },
+  {
+    number: "004",
+    title: ["LAMBDAS", "EBORAD"],
+    slug: "lambda-eboard",
+    category: "VISUAL EXPERIMENT",
+    description:
+      "A third placeholder case study that can later hold process notes, screenshots, and results.",
+    tags: ["ART", "SYSTEM", "IDEA"],
+    role: "ART / DEVELOPMENT",
+    tools: ["DESIGN", "CODE", "EXPERIMENT"],
+    problem: "Explain the context, constraint, or creative challenge here.",
+    approach: "Describe the design process, technical approach, or experiments.",
+    result: "Add outcomes, lessons learned, and what changed because of the work.",
+  },
+  {
+    number: "005",
+    title: ["ninja", "650"],
+    slug: "ninja-650",
+    category: "VISUAL EXPERIMENT",
+    description:
+      "A third placeholder case study that can later hold process notes, screenshots, and results.",
+    tags: ["ART", "SYSTEM", "IDEA"],
+    role: "ART / DEVELOPMENT",
+    tools: ["DESIGN", "CODE", "EXPERIMENT"],
+    problem: "Explain the context, constraint, or creative challenge here.",
+    approach: "Describe the design process, technical approach, or experiments.",
+    result: "Add outcomes, lessons learned, and what changed because of the work.",
+  },
+  {
+    number: "006",
+    title: ["Tensei", "THETAS"],
+    slug: "theta-class",
+    category: "VISUAL EXPERIMENT",
+    description:
+      "A third placeholder case study that can later hold process notes, screenshots, and results.",
+    tags: ["ART", "SYSTEM", "IDEA"],
+    role: "ART / DEVELOPMENT",
+    tools: ["DESIGN", "CODE", "EXPERIMENT"],
+    problem: "Explain the context, constraint, or creative challenge here.",
+    approach: "Describe the design process, technical approach, or experiments.",
+    result: "Add outcomes, lessons learned, and what changed because of the work.",
+  },
+  {
+    number: "007",
+    title: ["Immortal", "IOTAS"],
+    slug: "iota-class",
+    category: "VISUAL EXPERIMENT",
+    description:
+      "A third placeholder case study that can later hold process notes, screenshots, and results.",
+    tags: ["ART", "SYSTEM", "IDEA"],
+    role: "ART / DEVELOPMENT",
+    tools: ["DESIGN", "CODE", "EXPERIMENT"],
+    problem: "Explain the context, constraint, or creative challenge here.",
+    approach: "Describe the design process, technical approach, or experiments.",
+    result: "Add outcomes, lessons learned, and what changed because of the work.",
+  }
 ];
 
 export const getProjectBySlug = (slug?: string) =>
