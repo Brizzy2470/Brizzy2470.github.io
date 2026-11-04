@@ -1,9 +1,8 @@
 :root {
-    /* Monochrome portfolio palette */
-    --ink: #000000;
+    --ink: #151313;
     --paper: #FFFFFF;
-    --accent: #333131;
-    --secondary: #FFFFFF;
+    --accent: #303579;
+    --secondary: #2B2929;
 
     --font-body: Arial, Helvetica, sans-serif;
     --font-display:
