@@ -5,6 +5,8 @@ import Work from "./Work";
 import About from "./About";
 import Contact from "./Contact";
 import ProjectDetail from "./ProjectDetail";
+import Archive from "./Archive";
+import { VaultTransitionProvider } from "./components/VaultTransition/VaultTransition";
 
 function Portfolio() {
   const location = useLocation();
@@ -34,9 +36,12 @@ function Portfolio() {
 
 export default function App() {
   return (
-    <Routes>
+    <VaultTransitionProvider>
+      <Routes>
       <Route path="/" element={<Portfolio />} />
+      <Route path="/archive" element={<Archive />} />
       <Route path="/project/:slug" element={<ProjectDetail />} />
-    </Routes>
+      </Routes>
+    </VaultTransitionProvider>
   );
 }

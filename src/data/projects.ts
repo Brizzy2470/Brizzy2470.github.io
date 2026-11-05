@@ -38,7 +38,7 @@ export const projects: Project[] = [
     category: "CREATIVE DEVELOPMENT",
     description:
       "A generic case study placeholder for a creative project. Replace this with the real project story later.",
-    tags: ["DESIGN", "CODE", "EXPERIMENT"],
+    tags: ["DESIGN", "CODE", "EXPERIMENT", "PHOTOGRAPHY"],
     role: "DESIGN / DEVELOPMENT",
     tools: ["REACT", "TYPESCRIPT", "GSAP"],
     problem: "Explain the context, constraint, or creative challenge here.",
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     category: "INTERACTIVE EXPERIENCE",
     description:
       "A second placeholder case study for an interactive project or experiment.",
-    tags: ["WEB", "MOTION", "UI"],
+    tags: ["WEB", "MOTION", "UI", "PHOTOGRAPHY"],
     role: "INTERACTION / UI",
     tools: ["WEB", "MOTION", "SYSTEM"],
     problem: "Explain the context, constraint, or creative challenge here.",
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     category: "VISUAL EXPERIMENT",
     description:
       "A third placeholder case study that can later hold process notes, screenshots, and results.",
-    tags: ["ART", "SYSTEM", "IDEA"],
+    tags: ["ART", "SYSTEM", "IDEA", "PHOTOGRAPHY"],
     role: "ART / DEVELOPMENT",
     tools: ["DESIGN", "CODE", "EXPERIMENT"],
     problem: "Explain the context, constraint, or creative challenge here.",
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     category: "VISUAL EXPERIMENT",
     description:
       "A third placeholder case study that can later hold process notes, screenshots, and results.",
-    tags: ["ART", "SYSTEM", "IDEA"],
+    tags: ["ART", "SYSTEM", "IDEA", "GRAPHIC DESIGN"],
     role: "ART / DEVELOPMENT",
     tools: ["DESIGN", "CODE", "EXPERIMENT"],
     problem: "Explain the context, constraint, or creative challenge here.",
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     category: "VISUAL EXPERIMENT",
     description:
       "A third placeholder case study that can later hold process notes, screenshots, and results.",
-    tags: ["ART", "SYSTEM", "IDEA"],
+    tags: ["ART", "SYSTEM", "IDEA", "PHOTOGRAPHY"],
     role: "ART / DEVELOPMENT",
     tools: ["DESIGN", "CODE", "EXPERIMENT"],
     problem: "Explain the context, constraint, or creative challenge here.",
@@ -108,7 +108,7 @@ export const projects: Project[] = [
     category: "VISUAL EXPERIMENT",
     description:
       "A third placeholder case study that can later hold process notes, screenshots, and results.",
-    tags: ["ART", "SYSTEM", "IDEA"],
+    tags: ["ART", "SYSTEM", "IDEA", "PHOTOGRAPHY"],
     role: "ART / DEVELOPMENT",
     tools: ["DESIGN", "CODE", "EXPERIMENT"],
     problem: "Explain the context, constraint, or creative challenge here.",
@@ -124,7 +124,7 @@ export const projects: Project[] = [
       "A third placeholder case study that can later hold process notes, screenshots, and results.",
     tags: ["ART", "SYSTEM", "IDEA"],
     role: "ART / DEVELOPMENT",
-    tools: ["DESIGN", "CODE", "EXPERIMENT"],
+    tools: ["DESIGN", "CODE", "EXPERIMENT", "PHOTOGRAPHY"],
     problem: "Explain the context, constraint, or creative challenge here.",
     approach: "Describe the design process, technical approach, or experiments.",
     result: "Add outcomes, lessons learned, and what changed because of the work.",

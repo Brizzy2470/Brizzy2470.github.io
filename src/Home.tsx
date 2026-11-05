@@ -1,4 +1,5 @@
 import PageTransition from "./components/PageTransition/PageTransition";
+import { useVaultTransition } from "./components/VaultTransition/VaultTransition";
 import { useLayoutEffect, useRef, type MouseEvent } from "react";
 import { useLocation } from "react-router-dom";
 import gsap from "gsap";
@@ -10,6 +11,7 @@ export default function Home() {
   const transitionRef = useRef<HTMLDivElement>(null);
   const transitionTextRef = useRef<HTMLSpanElement>(null);
   const location = useLocation();
+  const { enterArchive } = useVaultTransition();
 
   useLayoutEffect(() => {
     const page = pageRef.current;
@@ -308,13 +310,7 @@ export default function Home() {
             <button
               className="heroCta"
               type="button"
-              onClick={(event) =>
-                handleSectionEnter(
-                  `#${workNav.section}`,
-                  `${workNav.index} / ${workNav.label}`,
-                  event,
-                )
-              }
+              onClick={enterArchive}
             >
               <span className="heroCtaArrow">↗</span>
               <span>{site.hero.buttonText}</span>

@@ -1,4 +1,5 @@
 import PageTransition from "./components/PageTransition/PageTransition";
+import { useVaultTransition } from "./components/VaultTransition/VaultTransition";
 import { useLayoutEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
@@ -6,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "./data/projects";
 import { getProjectImages } from "./data/media";
 import { site } from "./data/site";
-import PhotoArchive from "./PhotoArchive";
 import "./work.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -15,6 +15,7 @@ export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
   const transitionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const { enterArchive } = useVaultTransition();
   const { work } = site;
 
   useLayoutEffect(() => {
@@ -164,7 +165,17 @@ export default function Work() {
           })}
         </div>
 
-        <PhotoArchive />
+        <div className="workArchiveEntry">
+          <span className="workArchiveEntryEyebrow">THE COLLECTION CONTINUES ///</span>
+          <button
+            className="workArchiveEntryButton"
+            type="button"
+            onClick={enterArchive}
+          >
+            ENTER THE ARCHIVE
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
       </section>
     </>
   );

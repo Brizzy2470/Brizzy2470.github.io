@@ -50,8 +50,6 @@ export default function PhotoArchive() {
     };
   }, [lightbox, activeGallery]);
 
-  if (photoGalleries.length === 0) return null;
-
   const openPhoto = (gallerySlug: string, photo: GalleryPhoto) => {
     const gallery = photoGalleries.find((item) => item.slug === gallerySlug);
     if (!gallery) return;
@@ -61,13 +59,14 @@ export default function PhotoArchive() {
   };
 
   return (
-    <div className="photoArchive" aria-label="Photography archive">
+    <div className="photoArchive" id="archive" aria-label="Photography archive">
       <div className="photoArchiveHeader">
         <span className="photoArchiveKicker">PHOTO ARCHIVE ///</span>
         <h3>SELECTED IMAGES</h3>
         <p>
-          Collections update automatically when photos are added to the media
-          folders.
+          {photoGalleries.length === 0
+            ? "THE ARCHIVE IS BEING ASSEMBLED. CHECK BACK SOON."
+            : "Collections update automatically when photos are added to the media folders."}
         </p>
       </div>
 
