@@ -424,3 +424,20 @@
   .archiveChoice, .archiveChoiceArrow, .archiveTile, .archiveTile img, .archiveBack { transition: none; }
   .archiveResults { animation: none; }
 }
+
+/* Category file selection: reuse the same diagonal OPEN CASE panel. */
+.archiveFileTransition .pageTransitionText {
+  width: min(88vw, 1200px);
+  text-align: center;
+  white-space: normal;
+  font-size: clamp(3rem, 9vw, 9rem);
+  overflow-wrap: normal;
+  line-height: 0.85;
+}
+@media (max-width: 620px) {
+  .archiveFileTransition .pageTransitionText {
+    width: 90vw;
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+    text-shadow: 4px 4px 0 var(--ink);
+  }
+}

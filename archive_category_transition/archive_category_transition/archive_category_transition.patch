@@ -1,0 +1,180 @@
+--- a/src/Archive.tsx
++++ b/src/Archive.tsx
+@@ -1,4 +1,7 @@
+-import { useEffect, useMemo, useRef, useState } from "react";
++import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
++import { flushSync } from "react-dom";
++import gsap from "gsap";
++import PageTransition from "./components/PageTransition/PageTransition";
+ import { Link, useSearchParams } from "react-router-dom";
+ import { useVaultTransition } from "./components/VaultTransition/VaultTransition";
+ import { getProjectImages } from "./data/media";
+@@ -68,6 +71,10 @@
+   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+   const resultsRef = useRef<HTMLElement>(null);
+   const closeRef = useRef<HTMLButtonElement>(null);
++  const fileTransitionRef = useRef<HTMLDivElement>(null);
++  const fileTransitionLabelRef = useRef<HTMLSpanElement>(null);
++  const fileTimelineRef = useRef<gsap.core.Timeline | null>(null);
++  const fileTransitionBusyRef = useRef(false);
+ 
+   const imageCount = selected?.images.length ?? 0;
+   const activeImage =
+@@ -80,32 +87,69 @@
+     ).padStart(2, "0")} PROJECTS`;
+   }, [selected]);
+ 
+-  const selectCategory = (category: Category) => {
+-    setLightboxIndex(null);
+-    setSearchParams({ category });
+-    if (selected?.id === category) {
+-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+-      resultsRef.current?.scrollIntoView({
+-        behavior: reduceMotion ? "auto" : "smooth",
+-        block: "start",
+-      });
+-    }
+-  };
+-
+-  useEffect(() => {
+-    if (!selected) {
+-      window.scrollTo({ top: 0, behavior: "auto" });
++  // Uses the same animated diagonal panel as WORK -> OPEN CASE.
++  // Keep it on the Archive page so it survives a category query-string change.
++  const changeCategory = (category: Category | null) => {
++    if (fileTransitionBusyRef.current) return;
++
++    if (selected?.id === category || (!selected && category === null)) {
++      if (category) resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
++      else window.scrollTo({ top: 0, behavior: "smooth" });
+       return;
+     }
+-    const frame = requestAnimationFrame(() => {
+-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+-      resultsRef.current?.scrollIntoView({
+-        behavior: reduceMotion ? "auto" : "smooth",
+-        block: "start",
+-      });
+-    });
+-    return () => cancelAnimationFrame(frame);
++
++    const curtain = fileTransitionRef.current;
++    const label = fileTransitionLabelRef.current;
++    const next = collections.find((item) => item.id === category);
++
++    if (!curtain) {
++      setLightboxIndex(null);
++      setSearchParams(category ? { category } : {});
++      return;
++    }
++
++    fileTransitionBusyRef.current = true;
++    if (label) label.textContent = next ? next.label : "CLOSE FILE";
++
++    fileTimelineRef.current?.kill();
++    gsap.killTweensOf(curtain);
++    gsap.set(curtain, { display: "block", xPercent: -120 });
++
++    fileTimelineRef.current = gsap.timeline({
++      onComplete: () => {
++        gsap.set(curtain, { display: "none", xPercent: -120 });
++        fileTransitionBusyRef.current = false;
++        fileTimelineRef.current = null;
++      },
++    })
++      .to(curtain, { xPercent: 0, duration: 0.45, ease: "power4.in" })
++      .add(() => {
++        // Update the gallery while the transition covers the viewport.
++        flushSync(() => {
++          setLightboxIndex(null);
++          setSearchParams(category ? { category } : {});
++        });
++
++        if (category) {
++          resultsRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
++        } else {
++          window.scrollTo({ top: 0, behavior: "auto" });
++        }
++      })
++      .to(curtain, { xPercent: 120, duration: 0.55, ease: "power4.out" }, ">+=0.09");
++  };
++
++  // Direct links and browser back/forward still scroll to the correct section.
++  // During the wipe, changeCategory handles the scroll before revealing the new gallery.
++  useLayoutEffect(() => {
++    if (fileTransitionBusyRef.current) return;
++    if (selected) resultsRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
++    else window.scrollTo({ top: 0, behavior: "auto" });
+   }, [selected?.id]);
++
++  useEffect(() => () => {
++    fileTimelineRef.current?.kill();
++  }, []);
+ 
+   useEffect(() => {
+     if (lightboxIndex === null || !selected || imageCount === 0) return;
+@@ -135,7 +179,15 @@
+   }, [lightboxIndex !== null, selected?.id, imageCount]);
+ 
+   return (
+-    <main className="archivePage">
++    <>
++      <div className="archiveFileTransition">
++        <PageTransition
++          ref={fileTransitionRef}
++          textRef={fileTransitionLabelRef}
++          label="OPEN FILE"
++        />
++      </div>
++      <main className="archivePage">
+       <header className="archiveTopbar">
+         <Link className="archiveBack" to="/#work" onClick={(event) => { event.preventDefault(); returnToWork(); }}>← BACK TO WORK</Link>
+         <span>ARCHIVE // SELECT YOUR PATH</span>
+@@ -161,7 +213,7 @@
+             key={category.id}
+             type="button"
+             className={`archiveChoice${selected?.id === category.id ? " archiveChoiceActive" : ""}`}
+-            onClick={() => selectCategory(category.id)}
++            onClick={() => changeCategory(category.id)}
+             aria-pressed={selected?.id === category.id}
+           >
+             <span className="archiveChoiceTop">
+@@ -191,7 +243,7 @@
+             </div>
+             <div className="archiveResultsMeta">
+               <span>{galleryCaption}</span>
+-              <button type="button" onClick={() => setSearchParams({})}>× CLOSE FILE</button>
++              <button type="button" onClick={() => changeCategory(null)}>× CLOSE FILE</button>
+             </div>
+           </div>
+ 
+@@ -274,5 +326,6 @@
+         </div>
+       )}
+     </main>
++    </>
+   );
+ }
+--- a/src/archive.css
++++ b/src/archive.css
+@@ -424,3 +424,20 @@
+   .archiveChoice, .archiveChoiceArrow, .archiveTile, .archiveTile img, .archiveBack { transition: none; }
+   .archiveResults { animation: none; }
+ }
++
++/* Category file selection: reuse the same diagonal OPEN CASE panel. */
++.archiveFileTransition .pageTransitionText {
++  width: min(88vw, 1200px);
++  text-align: center;
++  white-space: normal;
++  font-size: clamp(3rem, 9vw, 9rem);
++  overflow-wrap: normal;
++  line-height: 0.85;
++}
++@media (max-width: 620px) {
++  .archiveFileTransition .pageTransitionText {
++    width: 90vw;
++    font-size: clamp(2.5rem, 10vw, 4.5rem);
++    text-shadow: 4px 4px 0 var(--ink);
++  }
++}
